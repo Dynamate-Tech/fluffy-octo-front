@@ -10,7 +10,6 @@ const App = () => {
       <Routes>
         <Route path="/" element={<AdminDashboard />} />
         <Route path="/admin" element={<AdminDashboard />} />
-        <Route path="/batches" element={<BatchesPage />} />
       </Routes>
     </Router>
   );
