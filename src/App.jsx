@@ -2,7 +2,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import AdminDashboard from './pages/admin'; // make sure this path is correct
-import BatchesPage from './pages/BatchesPage';
 
 const App = () => {
   return (
