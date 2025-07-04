@@ -16,24 +16,26 @@ const AdminDashboard = () => {
   const [batchTitle, setBatchTitle] = useState('');
 
 
+const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 // Fetch collections
-  useEffect(() => {
-    axios.get("http://localhost:3001/collections")
-      .then(res => setCollections(res.data))
-      .catch(err => console.error("❌ Failed to load collections:", err));
-  }, []);
+useEffect(() => {
+  axios.get('${API_BASE_URL}/collections')
+    .then(res => setCollections(res.data))
+    .catch(err => console.error("❌ Failed to load collections:", err));
+}, []);
 
 // Fetch tags
-  useEffect(() => {
-    axios.get('http://localhost:3001/tags')
-      .then(res => {
-        console.log("✅ Tags loaded:", res.data); // Add this
-        setTagOptions(res.data);
-      })
-      .catch(err => {
-        console.error("❌ Failed to load tags:", err.message || err);
-      });
-  }, []);
+useEffect(() => {
+  axios.get('${API_BASE_URL}/tags')
+    .then(res => {
+      console.log("✅ Tags loaded:", res.data);
+      setTagOptions(res.data);
+    })
+    .catch(err => {
+      console.error("❌ Failed to load tags:", err.message || err);
+    });
+}, []);
 
 
 // ✅ Put this once near the top of your component (before fetchPreview)
@@ -57,7 +59,7 @@ const AdminDashboard = () => {
 
     if (!Object.keys(params).length) return;
 
-    const res = await axios.get("http://localhost:3001/preview", { params });
+    const res = await axios.get("${API_BASE_URL}/preview", { params });
 
   // 🧠 Simulate price preview here!
     const updated = res.data.map((variant) => {
@@ -125,7 +127,7 @@ const handleApplyPrices = async () => {
 
     console.log("🚀 Sending payload to backend:", payload);
 
-    const res = await axios.post('http://localhost:3001/apply-schedule', payload);
+    const res = await axios.post('${API_BASE_URL}/apply-schedule', payload);
     alert('🎉 Price logic scheduled successfully!');
   } catch (err) {
     console.error("❌ Failed to schedule:", err);
@@ -148,7 +150,7 @@ const applyScheduled = async () => {
 
     console.log("📤 Scheduling price change:", payload);
 
-    const res = await axios.post('http://localhost:3001/apply-schedule', payload);
+    const res = await axios.post('${API_BASE_URL}/apply-schedule', payload);
 
     alert('🎉 Price logic scheduled successfully!');
   } catch (err) {
@@ -161,7 +163,7 @@ const applyScheduled = async () => {
 // Run price simulations..
 const runSimulation = async () => {
   try {
-    const res = await axios.post('http://localhost:3001/simulate', {
+    const res = await axios.post('${API_BASE_URL}/simulate', {
       filterType: selectedTag ? 'tag' : 'collection',
       filterValue: selectedTag || selectedCollection,
       ruleType,
@@ -176,7 +178,7 @@ const runSimulation = async () => {
 // Revert price now...
 const revertNow = async () => {
   try {
-    const res = await axios.post('http://localhost:3001/revert-now', {
+    const res = await axios.post('${API_BASE_URL}/revert-now', {
       filterType: selectedFilter.type,
       filterValue: selectedFilter.value,
     });
@@ -325,31 +327,31 @@ const revertNow = async () => {
           <table className="w-full border-collapse border text-sm">
             <thead className="bg-gray-100">
               <tr>
-			          <th className="border p-2">Vendor</th>
+		<th className="border p-2">Vendor</th>
                 <th className="border p-2">Product</th>
                 <th className="border p-2">SKU</th>
                 <th className="border p-2">Size</th>
                 <th className="border p-2">Price</th>
                 <th className="border p-2">Compare At</th>
                 <th className="border p-2">Qty</th>
-				<th className="border p-2" style={{ color: 'cyan', fontWeight: 'bold' }}>Simulated Price</th>
-				<th className="border p-2">Explanation</th>
+		<th className="border p-2" style={{ color: 'cyan', fontWeight: 'bold' }}>Simulated Price</th>
+		<th className="border p-2">Explanation</th>
               </tr>
             </thead>
             <tbody>
               {products.map((variant, idx) => (
                 <tr key={idx}>
-				          <td className="border p-2">{variant.vendor}</td>
+		  <td className="border p-2">{variant.vendor}</td>
                   <td className="border p-2">{variant.title}</td>
                   <td className="border p-2">{variant.sku}</td>
                   <td className="border p-2">{variant.size}</td>
                   <td className="border p-2">${variant.price}</td>
                   <td className="border p-2">${variant.compare_at_price || '-'}</td>
                   <td className="border p-2">{variant.quantity}</td>
-				  <td className="border p-2" style={{ color: 'cyan', fontWeight: 'bold' }}>
-					${variant.simulated_price || '-'}
-				  </td>
-				  <td className="border p-2">{variant.explanation || '-'}</td>
+		  <td className="border p-2" style={{ color: 'cyan', fontWeight: 'bold' }}>
+			${variant.simulated_price || '-'}
+		  </td>
+		  <td className="border p-2">{variant.explanation || '-'}</td>
                 </tr>
               ))}
             </tbody>
