@@ -20,14 +20,14 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 // Fetch collections
 useEffect(() => {
-  axios.get('${API_BASE_URL}/collections')
+  axios.get(`${API_BASE_URL}/collections`)
     .then(res => setCollections(res.data))
     .catch(err => console.error("❌ Failed to load collections:", err));
 }, []);
 
 // Fetch tags
 useEffect(() => {
-  axios.get('${API_BASE_URL}/tags')
+  axios.get(`${API_BASE_URL}/tags`)
     .then(res => {
       console.log("✅ Tags loaded:", res.data);
       setTagOptions(res.data);
@@ -59,7 +59,7 @@ useEffect(() => {
 
     if (!Object.keys(params).length) return;
 
-    const res = await axios.get("${API_BASE_URL}/preview", { params });
+    const res = await axios.get(`${API_BASE_URL}/preview`, { params });
 
   // 🧠 Simulate price preview here!
     const updated = res.data.map((variant) => {
@@ -127,7 +127,7 @@ const handleApplyPrices = async () => {
 
     console.log("🚀 Sending payload to backend:", payload);
 
-    const res = await axios.post('${API_BASE_URL}/apply-schedule', payload);
+    const res = await axios.post(`${API_BASE_URL}/apply-schedule`, payload);
     alert('🎉 Price logic scheduled successfully!');
   } catch (err) {
     console.error("❌ Failed to schedule:", err);
@@ -150,7 +150,7 @@ const applyScheduled = async () => {
 
     console.log("📤 Scheduling price change:", payload);
 
-    const res = await axios.post('${API_BASE_URL}/apply-schedule', payload);
+    const res = await axios.post(`${API_BASE_URL}/apply-schedule`, payload);
 
     alert('🎉 Price logic scheduled successfully!');
   } catch (err) {
@@ -163,7 +163,7 @@ const applyScheduled = async () => {
 // Run price simulations..
 const runSimulation = async () => {
   try {
-    const res = await axios.post('${API_BASE_URL}/simulate', {
+    const res = await axios.post(`${API_BASE_URL}/simulate`, {
       filterType: selectedTag ? 'tag' : 'collection',
       filterValue: selectedTag || selectedCollection,
       ruleType,
@@ -178,7 +178,7 @@ const runSimulation = async () => {
 // Revert price now...
 const revertNow = async () => {
   try {
-    const res = await axios.post('${API_BASE_URL}/revert-now', {
+    const res = await axios.post(`${API_BASE_URL}/revert-now`, {
       filterType: selectedFilter.type,
       filterValue: selectedFilter.value,
     });
