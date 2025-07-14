@@ -337,9 +337,8 @@ const revertNow = async () => {
 	  >
 		Revert Now
 	  </button>
-
+<hr>
       <div className="mt-6">
-	<hr>
         {products.length > 0 ? (
           <table className="w-full border-collapse border text-sm">
             <thead className="bg-gray-100">
