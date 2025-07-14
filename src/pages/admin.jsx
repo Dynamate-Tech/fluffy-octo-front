@@ -21,16 +21,20 @@ const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 // Fetch collections
 useEffect(() => {
   axios.get(`${API_BASE_URL}/collections`)
-    .then(res => setCollections(res.data))
+    .then(res => {
+      const sorted = res.data.sort((a, b) => a.title.localeCompare(b.title));
+      setCollections(sorted);
+    })
     .catch(err => console.error("❌ Failed to load collections:", err));
 }, []);
+
 
 // Fetch tags
 useEffect(() => {
   axios.get(`${API_BASE_URL}/tags`)
     .then(res => {
-      console.log("✅ Tags loaded:", res.data);
-      setTagOptions(res.data);
+      const sorted = res.data.sort((a, b) => a.localeCompare(b));
+      setTagOptions(sorted);
     })
     .catch(err => {
       console.error("❌ Failed to load tags:", err.message || err);
@@ -192,6 +196,22 @@ const revertNow = async () => {
 
 // ✅ Return JSX...
   return (
+	  
+  <div style={{
+    minHeight: '100vh',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    background: '#f3f4f6' // optional soft grey background
+  }}>
+    <div style={{
+      width: '100%',
+      maxWidth: '1280px',
+      padding: '20px',
+      background: 'white',
+      boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
+      borderRadius: '8px',
+    }}>
     <div className="p-6 space-y-4">
       <h1 className="text-2xl font-bold">Dynamate Admin Dashboard</h1>
 
@@ -361,6 +381,8 @@ const revertNow = async () => {
             No preview data. Select a filter and click Preview.
           </p>
         )}
+	  </div>
+  	</div>
       </div>
     </div>
   );
