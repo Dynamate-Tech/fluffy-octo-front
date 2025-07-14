@@ -202,7 +202,6 @@ const revertNow = async () => {
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    background: '#f3f4f6' // optional soft grey background
   }}>
     <div style={{
       width: '100%',
