@@ -203,7 +203,6 @@ const revertNow = async () => {
     alignItems: 'center',
   }}>
     <div style={{
-      width: '100%',
       padding: '20px',
       background: 'dimgrey',
       boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
