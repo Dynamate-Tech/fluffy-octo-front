@@ -199,14 +199,13 @@ const revertNow = async () => {
 	  
   <div style={{
     minHeight: '100vh',
-    display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
   }}>
     <div style={{
       width: '100%',
       padding: '20px',
-      background: 'grey',
+      background: 'dimgrey',
       boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
       borderRadius: '8px',
     }}>
