@@ -204,7 +204,7 @@ const revertNow = async () => {
   }}>
     <div style={{
       padding: '20px',
-      background: 'dimgrey',
+      background: '#414141',
       boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
       borderRadius: '8px',
     }}>
@@ -337,9 +337,10 @@ const revertNow = async () => {
 	  >
 		Revert Now
 	  </button>
-<br />
-<hr>
+
       <div className="mt-6">
+	<br />
+	<hr>
         {products.length > 0 ? (
           <table className="w-full border-collapse border text-sm">
             <thead className="bg-gray-100">
