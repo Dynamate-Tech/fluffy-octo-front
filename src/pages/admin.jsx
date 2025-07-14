@@ -205,9 +205,8 @@ const revertNow = async () => {
   }}>
     <div style={{
       width: '100%',
-      maxWidth: '1280px',
       padding: '20px',
-      background: 'white',
+      background: 'grey',
       boxShadow: '0 4px 20px rgba(0,0,0,0.1)',
       borderRadius: '8px',
     }}>
