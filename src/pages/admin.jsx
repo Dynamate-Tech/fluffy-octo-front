@@ -81,6 +81,9 @@ useEffect(() => {
         case 'copy_to_compare':
           newPrice = base.toFixed(2);
           break;
+	case 'copy_to_base':
+          newPrice = compare.toFixed(2);
+          break;
         case 'compare_percentage':
           if (compare) newPrice = (compare * (1 - discountValue / 100)).toFixed(2);
           break;
@@ -266,7 +269,8 @@ const revertNow = async () => {
 			<option value="">-- Choose a Price Rule --</option>
 			<option value="base_percentage">Base Price = Base - % Off</option>
 			<option value="base_fixed">Base Price = Fixed Amount</option>
-			<option value="copy_to_compare">If Compare-At empty → Copy Base</option>
+			<option value="copy_to_compare">If Compare-At empty → Copy Base</option>			  
+			<option value="copy_to_base">Base Price = Compare-At Price</option>
 			<option value="compare_percentage">Base Price = Compare-At - % Off</option>
 			<option value="compare_fixed">Base Price = Compare-At - Fixed Amount</option>
 		  </select>
