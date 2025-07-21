@@ -276,7 +276,7 @@ const revertNow = async () => {
 		  </select>
 		</label>
 		<br />
-		{ruleType !== 'copy_to_compare' && (
+		{ruleType !== 'copy_to_compare' && 'copy_to_base' && (
 		<label>
 		  Discount Value:
 		  <input
