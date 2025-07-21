@@ -82,7 +82,7 @@ useEffect(() => {
           newPrice = base.toFixed(2);
           break;
 	case 'copy_to_base':
-          newPrice = compare.toFixed(2);
+          if (compare) newPrice = compare.toFixed(2);
           break;
         case 'compare_percentage':
           if (compare) newPrice = (compare * (1 - discountValue / 100)).toFixed(2);
