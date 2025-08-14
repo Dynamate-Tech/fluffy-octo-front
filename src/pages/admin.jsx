@@ -276,7 +276,7 @@ const revertNow = async () => {
 		  </select>
 		</label>
 		<br />
-		{ruleType !== 'copy_to_compare' && 'copy_to_base' && (
+		{ruleType !== 'copy_to_compare' && ruleType !== 'copy_to_base' && (
 		<label>
 		  Discount Value:
 		  <input
@@ -321,7 +321,11 @@ const revertNow = async () => {
 	  <button
 		className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
 		onClick={handleApplyPrices}
-		disabled={!selectedFilter || !ruleType || (ruleType !== 'copy_to_compare' && 'copy_to_base' && !discountValue)}
+		disabled={
+  			!selectedFilter ||
+  			!ruleType ||
+  			((ruleType !== 'copy_to_compare' && ruleType !== 'copy_to_base') && !discountValue)
+		}
 	  >
 		Apply Prices
 	  </button>
