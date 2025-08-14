@@ -81,7 +81,7 @@ useEffect(() => {
         case 'copy_to_compare':
           newPrice = base.toFixed(2);
           break;
-	case 'copy_to_base':
+		case 'copy_to_base':
           if (compare) newPrice = compare.toFixed(2);
           break;
         case 'compare_percentage':
@@ -321,7 +321,7 @@ const revertNow = async () => {
 	  <button
 		className="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mt-2"
 		onClick={handleApplyPrices}
-		disabled={!selectedFilter || !ruleType || (ruleType !== 'copy_to_compare' && !discountValue) || (ruleType !== 'copy_to_base' && !discountValue)}
+		disabled={!selectedFilter || !ruleType || (ruleType !== 'copy_to_compare' && 'copy_to_base' && !discountValue)}
 	  >
 		Apply Prices
 	  </button>
