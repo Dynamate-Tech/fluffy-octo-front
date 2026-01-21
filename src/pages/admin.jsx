@@ -212,7 +212,7 @@ const revertNow = async () => {
       borderRadius: '8px',
     }}>
     <div className="p-6 space-y-4">
-      <h1 className="text-2xl font-bold">Dynamate Admin Dashboard</h1>
+      <h1 className="text-2xl font-bold">Dynamate Price Change Dashboard</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
       <label>
