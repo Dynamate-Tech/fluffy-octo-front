@@ -5,27 +5,36 @@ import AdminDashboard from './pages/admin';
 const App = () => {
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    async function checkConnection() {
-      try {
-        const res = await fetch(
-          "https://dynamate-promo-price-change.onrender.com/status"
-        );
-        const data = await res.json();
+ useEffect(() => {
+  async function checkConnection() {
+    try {
+      console.log("Checking connection...");
 
-        if (!data.connected) {
-          window.location.href =
-            "https://dynamate-promo-price-change.onrender.com/auth?shop=hh-dynamic-sports-hub.myshopify.com";
-        } else {
-          setLoading(false);
-        }
-      } catch (err) {
-        console.error("Connection check failed:", err);
+      const res = await fetch(
+        "https://dynamate-promo-price-change.onrender.com/status"
+      );
+
+      console.log("Response received:", res);
+
+      const data = await res.json();
+      console.log("Data:", data);
+
+      if (!data.connected) {
+        console.log("Not connected → redirecting");
+        window.location.href =
+          "https://dynamate-promo-price-change.onrender.com/auth?shop=hh-dynamic-sports-hub.myshopify.com";
+      } else {
+        console.log("Connected!");
+        setLoading(false);
       }
+    } catch (err) {
+      console.error("Connection check failed:", err);
+      setLoading(false); // 👈 prevent infinite loading
     }
+  }
 
-    checkConnection();
-  }, []);
+  checkConnection();
+}, []);
 
   // 👇 Prevent UI from flashing before check finishes
   if (loading) {
