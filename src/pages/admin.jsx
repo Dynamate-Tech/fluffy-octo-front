@@ -18,6 +18,20 @@ const AdminDashboard = () => {
 
 const API_BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
+	//--------------------------
+	// check connections
+	//--------------------------
+
+	async function checkConnection() {
+  		const res = await fetch("https://https://dynamate-promo-price-change.onrender.com/status");
+  		const data = await res.json();
+
+  	if (!data.connected) {
+    	window.location.href =
+	      "https://dynamate-promo-price-change.onrender.com/auth?shop=hh-dynamic-sports-hub.myshopify.com";
+  	}
+	}
+
 // Fetch collections
 useEffect(() => {
   axios.get(`${API_BASE_URL}/collections`)
