@@ -41,6 +41,12 @@ const App = () => {
     return <div>Loading...</div>;
   }
 
+  const params = new URLSearchParams(window.location.search);
+
+if (params.get("connected")) {
+  alert("Shopify connected successfully!");
+}
+
   return (
     <Router>
       <Routes>
